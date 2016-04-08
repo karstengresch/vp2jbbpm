@@ -14,6 +14,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>xml-maven-plugin</artifactId>
+          <version>1.0.1</version>
           <executions>
             <execution>
               <goals>
@@ -27,7 +28,7 @@
               <transformationSet>
                 <dir>src/main/resources/</dir>
                 <stylesheet>src/main/xslt/vp2jbbpm/vp2jbbpm.xsl</stylesheet>
-                <outputDir>target/vp2jbbpm</outputDir>
+                <outputDir>target/vp2jbbpm/transformed</outputDir>
                 <outputProperties>
                   <outputProperty>
                     <name>indent</name>
@@ -38,6 +39,13 @@
 
             </transformationSets>
           </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>net.sf.saxon</groupId>
+              <artifactId>saxon</artifactId>
+              <version>8.7</version>
+            </dependency>
+          </dependencies>
         </plugin>
 
         <plugin>
@@ -89,7 +97,7 @@
                     <include>**/classes/**/*</include>
                   </includes>
                   <excludes>
-                    <exclude>**/adlib_out/*</exclude>
+                    <exclude>**/NOTHING_HERE_YET/*</exclude>
                   </excludes>
                   <clean>true</clean>
                   <cleanEmptyDirectories>true</cleanEmptyDirectories>
@@ -120,11 +128,17 @@
   </build>
 
   <dependencies>
+    <!-- NB - Saxon 8.7 now in xml-maven-plugin dependency
+    <dependency>
+      <groupId>xerces</groupId>
+      <artifactId>xercesImpl</artifactId>
+      <version>2.11.0</version>
+    </dependency>
     <dependency>
       <groupId>xalan</groupId>
       <artifactId>xalan</artifactId>
       <version>2.7.2</version>
-    </dependency>
+    </dependency>-->
     <dependency>
       <groupId>xmlunit</groupId>
       <artifactId>xmlunit</artifactId>
